@@ -19,6 +19,7 @@ fn main() {
         // read byte from serial port
         let mut serial_buf: Vec<u8> = vec![0; 1];
         port.read(serial_buf.as_mut_slice()).expect("Found no data!");
+        // I do not wait for a sync-byte, I just want to read dBA/dBC data :)
         // check whether data indicator byte was found then read two more bytes
         if serial_buf[0] == PT8005_INDICATOR_DATA {
             let mut serial_buf_b1: Vec<u8> = vec![0; 1];

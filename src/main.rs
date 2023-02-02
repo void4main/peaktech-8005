@@ -1,16 +1,20 @@
 use std::time::Duration;
 
+// PeakTech 8005
 const PT8005_BAUD: u32 = 9600;
 const PT8005_INDICATOR_DATA: u8 = 0x0D;
 const PT8005_TIMEOUT: u64 = 6000;
 
-fn main() {
-    //let ports = serialport::available_ports().expect("No ports found!");
-    // for p in ports {
-    //     println!("{}", p.port_name);
-    // }
+fn _list_available_ports(){
+    let ports = serialport::available_ports().expect("No ports found!");
+    for p in ports {
+        println!("{}", p.port_name);
+    }
+}
 
-    let port_peaktech = "/dev/tty.usbserial-0001";
+fn main() {
+    // let port_peaktech = "/dev/tty.usbserial-0001";
+    let port_peaktech = "COM3";
     let mut port = serialport::new(port_peaktech, PT8005_BAUD)
         .timeout(Duration::from_millis(PT8005_TIMEOUT))
         .open().expect("Failed to open port");

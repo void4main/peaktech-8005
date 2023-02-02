@@ -1,3 +1,4 @@
+use std::env;
 use std::time::Duration;
 
 // PeakTech 8005
@@ -13,6 +14,9 @@ fn _list_available_ports(){
 }
 
 fn main() {
+    let args: Vec<String> = env::args().collect();
+    let _file_path = &args[0];
+
     // let port_peaktech = "/dev/tty.usbserial-0001";
     let port_peaktech = "COM3";
     let mut port = serialport::new(port_peaktech, PT8005_BAUD)
